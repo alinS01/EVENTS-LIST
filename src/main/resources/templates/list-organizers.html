@@ -1,0 +1,65 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title class="container mt-4">List Organizers</title>
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+  <h1>List Organizers</h1>
+
+  <table id="organizers" class="table table-striped table-bordered mt-4" style="width:100%">
+
+    <thead>
+    <tr>
+      <th>Organizer ID</th>
+      <th>Organizer Name</th>
+      <th>Organizer Email</th>
+      <th>Organizer Phone</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="organizer : ${organizers}">
+      <td th:text="${organizer.getId()}">Organizer ID</td>
+      <td>
+        <a th:href="@{/getOrganizer/{organizerId}(organizerId=${organizer.getId()})}"
+           th:text="${organizer.getName()}">Organizer Name</a>
+      </td>
+      <td th:text="${organizer.getEmail()}">Organizer Email</td>
+      <td th:text="${organizer.getPhone()}">Organizer Phone</td>
+
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+</body>
+
+<div class="fixed-bottom mb-5" style="position: sticky; bottom: 0; background-color: white;">
+  <div class="container text-center">
+    <a class="btn btn-primary" onclick="goBack()">Back</a>
+    <a class="btn btn-primary" href="/addOrganizer">Add Organizer</a>
+  </div>
+</div>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+</html>>

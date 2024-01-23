@@ -1,0 +1,87 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+
+    <title>Event Details</title>
+
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css"
+          rel="stylesheet"
+          type="text/css"/>
+
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container">
+
+    <body>
+    <div class="container text-center mt-5">
+
+        <h1 class="mb-4" th:text="'Event\'s ' + ${event.getId()} + ' Details'">Event's id Details</h1>
+
+        <div class="container text-center mt-5">
+            <ul>
+                <ul><strong>Name:</strong> <span th:text="${event.getEventName()}"></span></ul>
+                <ul><strong>Description:</strong> <span th:text="${event.getDescription()}"></span></ul>
+                <ul>
+                    <li><strong>Event Location:</strong> <a
+                            th:href="@{/getLocation/{locationId}(locationId=${event.getLocation().getId()})}"
+                            th:text="${event.getLocation().getName()}">Event Location</a></li>
+                </ul>
+
+                <ul>
+                    <li><strong>Event Organizer:</strong>
+                        <a th:href="@{/getOrganizer/{organizerId}(organizerId=${event.getOrganizer().getId()})}"
+                           th:text="${event.getOrganizer().getName()}">Event Organizer</a>
+                    </li>
+                </ul>
+
+                    <ul>
+                        <strong>Participants:</strong>
+
+                        <ul th:each="participant : ${event.getParticipants()}">
+                            <li>
+                                <a th:href="@{/getParticipant/{idEvent}/{idParticipant}
+                            (idEvent=${event.getId()},idParticipant=${participant.getId()})}"
+                                   th:text="${participant.getName()}">Event Location</a>
+                            </li>
+                        </ul>
+                    </ul>
+                </ul>
+        </div>
+
+    </div>
+    </body>
+
+</div>
+
+</body>
+
+<div class="fixed-bottom mb-5" style="position: sticky; bottom: 0; background-color: white;">
+    <div class="container text-center">
+        <a class="btn btn-primary" onclick="goBack()">Back</a>
+        <a class="btn btn-primary" th:href="@{/addParticipant/{idEvent}(idEvent=${event.getId()})}">Add
+            Participant</a>
+
+        <a class="btn btn-danger" th:href="@{/deleteEvent/{id}(id=${event.id})}">Delete Event</a>
+    </div>
+</div>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+</html>

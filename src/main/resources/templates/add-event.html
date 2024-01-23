@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Details</title>
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+
+<body>
+<div class="container">
+  <h1 class="mt-5">Event details</h1>
+
+  <form th:action="@{'/addEvent'}" method="post">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <input type="text" class="form-control" id="description" name="description" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="locationId" class="form-label">Location Id:</label>
+      <input type="text" class="form-control" id="locationId" name="locationId" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="organizerId" class="form-label">Organizer Id:</label>
+      <input type="text" class="form-control" id="organizerId" name="organizerId" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Event</button>
+  </form>
+</div>
+</body>
+
+
+
+<div class="container text-center fixed-bottom mb-5">
+  <a class="btn btn-primary" onclick="goBack()">Back</a>
+</div>
+
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+</html>
